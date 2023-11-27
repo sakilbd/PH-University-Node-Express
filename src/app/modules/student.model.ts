@@ -97,9 +97,9 @@ const studentSchema = new Schema<TStudent, StudentModel>({ //for static methods
         ref: "User", //for referencing foreignkey relation
 
     },
-    password: {
-        type: String, required: true, maxlength: [20, "Password cannot be more than 20 characters"]
-    },
+    // password: {
+    //     type: String, required: true, maxlength: [20, "Password cannot be more than 20 characters"]
+    // },//as password is in Usre Model 
 
     name: {
         type: userNameSchema,
@@ -157,21 +157,21 @@ studentSchema.virtual("fullName").get(function () {
 
 //pre save middleware/hook will work on create() save()
 
-studentSchema.pre("save", async function (next) {
-    // console.log(this, "pre hook :we will save the data")
-    //hashing password and save into db 
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const user = this;//refers to doc 
-    user.password = await bycrypt.hash(user.password, Number(config.bcrypt_salt_rounds))
-    next();
-})
+// studentSchema.pre("save", async function (next) {
+//     // console.log(this, "pre hook :we will save the data")
+//     //hashing password and save into db 
+//     // eslint-disable-next-line @typescript-eslint/no-this-alias
+//     const user = this;//refers to doc 
+//     user.password = await bycrypt.hash(user.password, Number(config.bcrypt_salt_rounds))
+//     next();
+// })
 
-//post save middleware/hook 
-studentSchema.post("save", function (doc, next) {
-    // console.log(this, "post hook :we saved our data")
-    doc.password = "";
-    next();
-})
+// //post save middleware/hook 
+// studentSchema.post("save", function (doc, next) {
+//     // console.log(this, "post hook :we saved our data")
+//     doc.password = "";
+//     next();
+// })
 
 //Query Middleware
 studentSchema.pre("find", function (next) {

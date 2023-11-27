@@ -1,7 +1,9 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import { StudentRouters } from './app/modules/student/student.route';
 import { UserRoutes } from './app/modules/users/user.route';
+import globalErrorHandler from './app/middlewares/globalErrorHandler';
+import notFound from './app/middlewares/notFound';
 const app = express();
 
 //parser
@@ -22,5 +24,10 @@ const getAController = (req: Request, res: Response) => {
   res.send("server is working");
 }
 app.get('/', getAController);
+
+
+//global error handler
+app.use(globalErrorHandler)
+app.use(notFound);
 
 export default app;
