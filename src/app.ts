@@ -1,9 +1,8 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
-import { StudentRouters } from './app/modules/student/student.route';
-import { UserRoutes } from './app/modules/users/user.route';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import notFound from './app/middlewares/notFound';
+import router from './app/routes';
 const app = express();
 
 //parser
@@ -14,8 +13,8 @@ app.use(cors());
 
 //api/v1/students/create-student
 //application routers
-app.use('/api/v1/students', StudentRouters);
-app.use('/api/v1/users', UserRoutes);
+app.use('/api/v1', router);
+// app.use('/api/v1/users', UserRoutes);
 
 
 
