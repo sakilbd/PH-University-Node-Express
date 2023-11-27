@@ -90,6 +90,13 @@ const localGuradianSchema = new Schema<TLocalGuardian>({
 const studentSchema = new Schema<TStudent, StudentModel>({ //for static methods 
 
     id: { type: String, required: true, unique: true },
+    user: {
+        type: Schema.Types.ObjectId,
+        required: [true, "User id is required"],
+        unique: true,
+        ref: "User", //for referencing foreignkey relation
+
+    },
     password: {
         type: String, required: true, maxlength: [20, "Password cannot be more than 20 characters"]
     },
@@ -130,11 +137,7 @@ const studentSchema = new Schema<TStudent, StudentModel>({ //for static methods
         required: true,
     },
     profileImg: { type: String },
-    isActive: {
-        type: String,
-        enum: ['active', 'blocked'],
-        default: 'active',
-    },
+
     isDeleted: {
         type: Boolean,
         default: false,

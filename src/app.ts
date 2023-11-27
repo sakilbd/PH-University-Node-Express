@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { StudentRouters } from './app/modules/student/student.route';
-import { UserRouters } from './app/modules/users/user.route';
+import { UserRoutes } from './app/modules/users/user.route';
 const app = express();
 
 //parser
@@ -13,7 +13,8 @@ app.use(cors());
 //api/v1/students/create-student
 //application routers
 app.use('/api/v1/students', StudentRouters);
-app.use('/api', UserRouters);
+app.use('/api/v1/users', UserRoutes);
+
 
 
 

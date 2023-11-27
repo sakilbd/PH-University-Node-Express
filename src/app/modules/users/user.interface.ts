@@ -1,30 +1,15 @@
-interface Order {
-    productName: string;
-    price: number;
-    quantity: number;
+export type TUser = {
+    id: string;
+    password: string;
+    needsPasswordChange: boolean;
+    role: "admin" | "student" | 'faculty';
+    status: "in-progress" | "blocked";
+    isDeleted: boolean;
 }
 
 
-
-export type TUser = {
-    userId: number,
-    username: string,
-    password: string,
-    fullName: {
-        firstName: string,
-        lastName: string
-    },
-    age: number,
-    email: string,
-    isActive: boolean,
-    hobbies: [
-        string,
-        string
-    ],
-    address: {
-        street: string,
-        city: string,
-        country: string
-    }
-    orders?: Order[],
+export type NewUser = {
+    password: string;
+    role: string;
+    id: string;
 }

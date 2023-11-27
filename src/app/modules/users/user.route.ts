@@ -4,8 +4,10 @@ import { UserControllers } from "./user.controller";
 const router = express.Router();
 
 
-router.post('/users', UserControllers.createUser);
+
+//will call controller func 
+router.post("/create-student", UserControllers.createStudent);
 
 
 
-export const UserRouters = router;
+export const UserRoutes = router;
